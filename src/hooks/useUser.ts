@@ -1,5 +1,6 @@
 import { useQuery } from 'react-query';
 import axios from 'axios';
+import { fetchCurrentUser } from '../api';
 
 interface UserProps {
   userId: string;
@@ -12,16 +13,9 @@ interface UserProps {
 const useUser = () => {
   return useQuery<UserProps, Error>('currentUser', async () => {
     try {
-      // Fetch user data from the /me endpoint
-      const response = await axios.get('http://localhost:5002/api/users/me', {
-        withCredentials: true, // Ensure cookies are sent
-      });
-
-      if (response.data.success) {
-        return response.data.user; // Return the user data if the request is successful
-      } else {
-        throw new Error('Failed to fetch user');
-      }
+      // Use the fetchCurrentUser function directly
+      const user = await fetchCurrentUser();
+      return user; // Return the user data if the request is successful
     } catch (error) {
       console.error('Error fetching user:', error);
       throw error; // Handle error
