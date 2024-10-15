@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // Ensure REACT_APP_API_BASE_URL is accessible and correctly set
-const baseURL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:5002/api';
+const baseURL = process.env.REACT_APP_API_BASE_URL 
 console.log("API Base URL:", baseURL);  // Log to verify the URL
 
 
